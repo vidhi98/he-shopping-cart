@@ -81,9 +81,16 @@ const CartDataProvider = ({ children }) => {
     return result;
   }, [cartData]);
 
+  const typeDiscountTotal = useMemo(() => {
+    const result = cartData
+      .filter((item) => item.type === "fiction")
+      .reduce((a, b) => a + b.price * b.quantity * 0.15, 0);
+    return result;
+  }, [cartData]);
+
   const cartTotal = useMemo(
-    () => itemsTotal - discountTotal,
-    [discountTotal, itemsTotal]
+    () => itemsTotal - discountTotal - typeDiscountTotal,
+    [discountTotal, itemsTotal, typeDiscountTotal]
   );
 
   const reloadData = useCallback(() => {
@@ -101,6 +108,7 @@ const CartDataProvider = ({ children }) => {
     discountTotal,
     cartTotal,
     reloadData,
+    typeDiscountTotal,
   };
 
   return (

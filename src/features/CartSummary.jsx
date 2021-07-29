@@ -3,7 +3,7 @@ import React from "react";
 import useCartDataContext from "./CartDataProvider/useCartDataContext";
 
 const CartSummary = () => {
-  const { itemsTotal, discountTotal, cartTotal, itemsCount } =
+  const { itemsTotal, discountTotal, cartTotal, itemsCount, typeDiscountTotal } =
     useCartDataContext();
   return (
     <Box border="1px solid lightgray" maxWidth={300}>
@@ -45,7 +45,7 @@ const CartSummary = () => {
           </Grid>
           <Grid item xs={5}>
             <Typography variant="subtitle1" align="center">
-             - 7
+             - $ {typeDiscountTotal}
             </Typography>
           </Grid>
         </Grid>
