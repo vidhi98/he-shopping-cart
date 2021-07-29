@@ -1,8 +1,10 @@
 import { Box, Button, Grid, Typography } from "@material-ui/core";
 import React from "react";
-import ListData from "../data/listData";
+import useCartDataContext from "./CartDataProvider/useCartDataContext";
 
 const ItemList = () => {
+  const { addQuantity, cartData, removeQuantity, itemsCount, removeItem } =
+    useCartDataContext();
   return (
     <>
       <Box
@@ -13,7 +15,7 @@ const ItemList = () => {
       >
         <Grid container spacing={2}>
           <Grid item xs={8}>
-            <Typography>Items</Typography>
+            <Typography>Items ({itemsCount})</Typography>
           </Grid>
           <Grid item xs={2}>
             <Typography align="center">Qty</Typography>
@@ -24,7 +26,7 @@ const ItemList = () => {
         </Grid>
       </Box>
 
-      {ListData.map((item) => (
+      {cartData.map((item) => (
         <Grid
           container
           spacing={2}
@@ -42,7 +44,11 @@ const ItemList = () => {
                   <Typography>{item.name}</Typography>
                 </Grid>
                 <Grid item xs={1}>
-                  <Button size="medium" color="default">
+                  <Button
+                    size="medium"
+                    color="default"
+                    onClick={() => removeItem(item.id)}
+                  >
                     X
                   </Button>
                 </Grid>
@@ -51,17 +57,21 @@ const ItemList = () => {
           </Grid>
           <Grid item xs={4} lg={3} container>
             <Grid item xs="auto">
-              <Button size="large">-</Button>
+              <Button size="large" onClick={() => removeQuantity(item.id)}>
+                -
+              </Button>
             </Grid>
             <Grid item xs="auto">
               <Box px={2.5} border="solid 1px lightgray" py={1.5}>
                 <Typography variant="h6" border={4}>
-                  1
+                  {item.quantity}
                 </Typography>
               </Box>
             </Grid>
             <Grid item xs="auto">
-              <Button size="large">+</Button>
+              <Button size="large" onClick={() => addQuantity(item.id)}>
+                +
+              </Button>
             </Grid>
           </Grid>
           <Grid item xs={2}>

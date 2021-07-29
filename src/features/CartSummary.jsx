@@ -1,7 +1,10 @@
 import { Box, Grid, Typography } from "@material-ui/core";
 import React from "react";
+import useCartDataContext from "./CartDataProvider/useCartDataContext";
 
 const CartSummary = () => {
+  const { itemsTotal, discountTotal, cartTotal, itemsCount } =
+    useCartDataContext();
   return (
     <Box border="1px solid lightgray" maxWidth={300}>
       <Box p={2}>
@@ -10,51 +13,51 @@ const CartSummary = () => {
             <Typography variant="h6">Total</Typography>
           </Grid>
 
-          <Grid item xs={8}>
-            <Typography variant="subtitle1">Items</Typography>
+          <Grid item xs={6}>
+            <Typography variant="subtitle1">Items ({itemsCount})</Typography>
           </Grid>
           <Grid item xs={1}>
             <Typography>:</Typography>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={5}>
             <Typography variant="subtitle1" align="center">
-              7
+              $ {itemsTotal}
             </Typography>
           </Grid>
 
-          <Grid item xs={8}>
+          <Grid item xs={6}>
             <Typography variant="subtitle1">Discount</Typography>
           </Grid>
           <Grid item xs={1}>
             <Typography>:</Typography>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={5}>
             <Typography variant="subtitle1" align="center">
-              7
+             - $ {discountTotal}
             </Typography>
           </Grid>
 
-          <Grid item xs={8}>
+          <Grid item xs={6}>
             <Typography variant="subtitle1">Type Discount</Typography>
           </Grid>
           <Grid item xs={1}>
             <Typography>:</Typography>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={5}>
             <Typography variant="subtitle1" align="center">
-              7
+             - 7
             </Typography>
           </Grid>
         </Grid>
       </Box>
       <Box p={2} mt={2} bgcolor="lightgray">
         <Grid item container xs={12}>
-          <Grid item xs={8}>
+          <Grid item xs={6}>
             <Typography>Order Total</Typography>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <Typography variant="subtitle1" align="center">
-              $1254.0
+              $ {cartTotal}
             </Typography>
           </Grid>
         </Grid>

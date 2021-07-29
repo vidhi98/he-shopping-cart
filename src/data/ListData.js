@@ -6,6 +6,7 @@ const ListData = [
     discount: 10,
     type: "fiction",
     img_url: "https://place-hold.it/40.jpg",
+    quantity: 1,
   },
   {
     id: 9091,
@@ -14,6 +15,7 @@ const ListData = [
     discount: 15,
     type: "literature",
     img_url: "https://place-hold.it/40.jpg",
+    quantity: 1,
   },
   {
     id: 9092,
@@ -22,6 +24,7 @@ const ListData = [
     discount: 5,
     type: "literature",
     img_url: "https://place-hold.it/40.jpg",
+    quantity: 1,
   },
   {
     id: 9093,
@@ -30,6 +33,7 @@ const ListData = [
     discount: 0,
     type: "thriller",
     img_url: "https://place-hold.it/40.jpg",
+    quantity: 1,
   },
   {
     id: 9094,
@@ -38,6 +42,7 @@ const ListData = [
     discount: 25,
     type: "thriller",
     img_url: "https://place-hold.it/40.jpg",
+    quantity: 1,
   },
   {
     id: 9095,
@@ -46,6 +51,7 @@ const ListData = [
     discount: 5,
     type: "literature",
     img_url: "https://place-hold.it/40.jpg",
+    quantity: 1,
   },
   {
     id: 9096,
@@ -54,6 +60,7 @@ const ListData = [
     discount: 22,
     type: "literature",
     img_url: "https://place-hold.it/40.jpg",
+    quantity: 1,
   },
   {
     id: 9097,
@@ -62,6 +69,7 @@ const ListData = [
     discount: 18,
     type: "fiction",
     img_url: "https://place-hold.it/40.jpg",
+    quantity: 1,
   },
 ];
 
