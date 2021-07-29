@@ -1,5 +1,5 @@
 import "./App.css";
-import CartPage from "./features/cart";
+import CartPage from "./features/Cart";
 
 function App() {
   return <CartPage />;
