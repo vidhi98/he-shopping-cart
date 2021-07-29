@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@material-ui/core";
 import React from "react";
-import useCartDataContext from "./CartDataProvider/useCartDataContext";
+import useCartDataContext from "../CartDataProvider/useCartDataContext";
 
 const CartSummary = () => {
   const { itemsTotal, discountTotal, cartTotal, itemsCount, typeDiscountTotal } =

@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Typography, makeStyles } from "@material-ui/core";
 import React from "react";
 import { useRef } from "react";
-import useCartDataContext from "./CartDataProvider/useCartDataContext";
+import useCartDataContext from "../CartDataProvider/useCartDataContext";
 
 const useStyles = makeStyles((theme) => ({
   alert: {
@@ -110,7 +110,7 @@ const ItemList = () => {
             <Grid item xs={4} lg={3} container>
               <Grid item xs="auto">
                 <Button size="large" onClick={() => removeQuantity(item.id)}>
-                  -
+                  &#9472;
                 </Button>
               </Grid>
               <Grid item xs="auto">
@@ -122,7 +122,7 @@ const ItemList = () => {
               </Grid>
               <Grid item xs="auto">
                 <Button size="large" onClick={() => addQuantity(item.id)}>
-                  +
+                  &#x0002B;
                 </Button>
               </Grid>
             </Grid>

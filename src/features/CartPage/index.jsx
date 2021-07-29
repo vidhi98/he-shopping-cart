@@ -1,6 +1,6 @@
 import { Typography, Box, Grid, makeStyles } from "@material-ui/core";
 import React from "react";
-import CartDataProvider from "./CartDataProvider";
+import CartDataProvider from "../CartDataProvider";
 import CartSummary from "./CartSummary";
 import ItemList from "./ItemsList";
 

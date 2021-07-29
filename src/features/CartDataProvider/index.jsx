@@ -42,7 +42,7 @@ const CartDataProvider = ({ children }) => {
       let newItems = [...cartData];
       newItems.forEach((item) => {
         if (item.id === itemId) {
-          if (item.quantity > 0) {
+          if (item.quantity > 1) {
             item.quantity -= quantity;
           } else {
             newItems = newItems.filter((item) => item.id !== itemId);
