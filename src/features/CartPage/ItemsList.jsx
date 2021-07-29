@@ -45,6 +45,10 @@ const ItemList = () => {
 
   const showAlert = () => {
     alertRef.current.style.display = "block";
+    var time = setTimeout(function () {
+      alertRef.current.style.display = "none";
+      clearTimeout(time);
+    }, 1500);
   };
 
   return (
