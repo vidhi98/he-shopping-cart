@@ -1,12 +1,26 @@
 import React from "react";
 import { useMemo } from "react";
+import { useEffect } from "react";
 import { useCallback } from "react";
 import { useState } from "react";
 import ListData from "../../data/ListData";
 import CartDataContext from "./CartDataContext";
 
 const CartDataProvider = ({ children }) => {
-  const [cartData, setCartData] = useState(ListData);
+  const [cartData, setCartData] = useState([]);
+
+  const setLSData = useCallback((data) => {
+    localStorage.setItem("cartData", JSON.stringify(data));
+  }, []);
+
+  const getLSData = useMemo(() => {
+    const data = JSON.parse(localStorage.getItem("cartData"));
+    return data;
+  }, []);
+
+  useEffect(() => {
+    setCartData(getLSData || ListData);
+  }, [getLSData]);
 
   const addQuantity = useCallback(
     (itemId, quantity = 1) => {
@@ -18,8 +32,9 @@ const CartDataProvider = ({ children }) => {
       });
       console.log(newItems);
       setCartData(newItems);
+      setLSData(newItems);
     },
-    [cartData]
+    [cartData, setLSData]
   );
 
   const removeQuantity = useCallback(
@@ -35,16 +50,18 @@ const CartDataProvider = ({ children }) => {
         }
       });
       setCartData(newItems);
+      setLSData(newItems);
     },
-    [cartData]
+    [cartData, setLSData]
   );
 
   const removeItem = useCallback(
     (itemId) => {
       const newData = cartData.filter((item) => item.id !== itemId);
       setCartData(newData);
+      setLSData(newData);
     },
-    [cartData]
+    [cartData, setLSData]
   );
   const itemsCount = useMemo(() => cartData.length, [cartData]);
 
@@ -69,6 +86,11 @@ const CartDataProvider = ({ children }) => {
     [discountTotal, itemsTotal]
   );
 
+  const reloadData = useCallback(() => {
+    setCartData(ListData);
+    setLSData(ListData);
+  }, [setLSData]);
+
   const data = {
     cartData,
     addQuantity,
@@ -78,6 +100,7 @@ const CartDataProvider = ({ children }) => {
     itemsTotal,
     discountTotal,
     cartTotal,
+    reloadData,
   };
 
   return (
