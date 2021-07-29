@@ -1,8 +1,35 @@
-import { Box, Button, Grid, Typography } from "@material-ui/core";
+import { Box, Button, Grid, Typography, makeStyles } from "@material-ui/core";
 import React from "react";
+import { useRef } from "react";
 import useCartDataContext from "./CartDataProvider/useCartDataContext";
 
+const useStyles = makeStyles((theme) => ({
+  alert: {
+    padding: "20px",
+    backgroundColor: theme.palette.warning.main,
+    color: "white",
+    display: "none",
+  },
+
+  closebtn: {
+    marginLeft: "15px",
+    color: "white",
+    fontWeight: "bold",
+    float: "right",
+    fontSize: "22px",
+    lineHeight: "20px",
+    cursor: "pointer",
+    transition: "0.3s",
+    "&:hover": {
+      color: "black",
+    },
+  },
+}));
+
 const ItemList = () => {
+  const classes = useStyles();
+  const alertRef = useRef();
+
   const {
     addQuantity,
     cartData,
@@ -11,8 +38,23 @@ const ItemList = () => {
     removeItem,
     reloadData,
   } = useCartDataContext();
+
+  const closeAlert = () => {
+    alertRef.current.style.display = "none";
+  };
+
+  const showAlert = () => {
+    alertRef.current.style.display = "block";
+  };
+
   return (
     <>
+      <div className={classes.alert} ref={alertRef}>
+        <Button className={classes.closebtn} onClick={closeAlert}>
+          &times;
+        </Button>
+        One item from your cart has been deleted
+      </div>
       <Box
         py={2}
         mb={4}
@@ -54,7 +96,10 @@ const ItemList = () => {
                     <Button
                       size="medium"
                       color="default"
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => {
+                        removeItem(item.id);
+                        showAlert();
+                      }}
                     >
                       X
                     </Button>
